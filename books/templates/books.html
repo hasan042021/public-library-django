@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="card my-3 container" style=" margin:auto">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex  align-items-center justify-content-start">
+        <img src="{{book.image.url}}" class="img-fluid rounded p-2" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}} </h5>
+          <p class="card-title">{{book.description}}</p>
+          <b><p class="card-text">Borrowing Price: ${{book.borrowing_price}}</p></b>
+          <p class="card-text mb-0 pb-0"> Quantity: {{car.quantity}} </p>
+           <p>
+              Category : {% for cat in book.category.all %}
+              <button class="btn btn-primary btn-sm m-2" disabled>
+                {{cat.category_name}}
+              </button>
+              {% endfor %}
+            </p>
+          {% if user.is_authenticated %}
+          <form action="{% url 'borrow_book' book.id %}" class="d-inline-block" method="post">
+          {% csrf_token %}
+          <button type='submit' class="btn btn-outline-dark">Borrow Now</button>
+          </form>
+          
+          {% endif %} 
+        </div>
+      </div>
+    </div>
+</div>
+ <div class="container">
+    <div class="card">
+        <h5 class="p-3">Total Reviews : {{reviews | length}}</h5>
+        {% for review in reviews %}
+      <div class="card-body border m-2">
+            <p><b>{{review.name}}</b> {{review.createdAt}}</p>
+            <p> <i>{{review.body}}</i></p>
+        </div>
+        {% endfor %}
+    </div>
+    {% if review_form %}
+      <div class="card my-2">
+        <div class="card-body">
+            <form method="post">
+                <h5>Add Review</h5>
+                {% csrf_token %}
+                {{review_form | crispy}}
+                <button class="btn btn-warning">Submit</button>
+        </div>
+      </div>
+    {% endif %}
+    
+</div> 
+
+{% endblock content %}
