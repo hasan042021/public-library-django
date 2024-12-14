@@ -49,7 +49,7 @@ Public Library is a platform that allows users to manage their reading activitie
 The admin has special privileges to manage the database and perform CRUD (Create, Read, Update, Delete) operations on books.
 
 - **Admin Login**: 
-  - Access the admin panel at [Admin Login](#) (This link is hidden for security reasons; please replace with the actual link).
+  - Access the admin panel at [Admin Login](https://public-library-django.onrender.com/admin/login/?next=/admin/) (This link is hidden for security reasons; please replace with the actual link).
   - **Admin Username**: `admin`
   - **Admin Password**: `1234`
   
