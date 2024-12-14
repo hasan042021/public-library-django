@@ -41,3 +41,22 @@ Public Library is a platform that allows users to manage their reading activitie
 
 - **View Borrowing History**: Users can see a list of all the books they have borrowed, along with their status (whether returned or not).
 - **Due Dates**: Users can view the due date for each borrowed book.
+
+---
+
+## Admin Functionality
+
+The admin has special privileges to manage the database and perform CRUD (Create, Read, Update, Delete) operations on books.
+
+- **Admin Login**: 
+  - Access the admin panel at [Admin Login](#) (This link is hidden for security reasons; please replace with the actual link).
+  - **Admin Username**: `admin`
+  - **Admin Password**: `1234`
+  
+- **Admin Features You Might Need Specifically**: The admin has the ability to:
+  - **Create New Books**: Add new books to the library's collection.
+  - **Update Books**: Edit the details of existing books.
+  - **Delete Books**: Remove books from the library.
+  - **Read Books**: View all books in the collection.
+
+> Please note that the admin panel is only accessible to authorized users with the admin username and password.
