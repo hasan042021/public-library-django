@@ -1,30 +1,44 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
-{% block content %} 
-    <div class="d-flex align-items-center justify-content-center">
-        {% if messages %}
-            {% for m in messages %}
-                <small {% if m.tags %} class="text-{{m.tags}}" {% endif %}>{{m}}</small>
-            {% endfor %}
-        {% endif %}
-        <form style="width:450px;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);"  method="post" class="p-4 my-5"  novalidate>       
-                <h1>Login page</h1>            
-            <!-- {{form | crispy }} -->
-            {% csrf_token %}
-            {% for fm in form.visible_fields %} 
-                {{fm.label_tag}} 
-                {{fm}} 
-                {{fm.errors|striptags}} 
-            {% endfor %}
-            <br />
-            <button class="btn btn-primary" type="submit">Submit</button>
-            <br/>
-            {% if type == 'Sign Up' %}
-            <small> Already have an account <a href="{% url 'login' %}">Login</a></small>
-            {% endif %} 
-        </form>
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="d-flex align-items-center justify-content-center">
+  {% if messages %}
+  <div class="position-absolute top-0">
+    {% for m in messages %}
+    <small {% if m.tags %} class="text-{{m.tags}}" {% endif %}> {{m}} </small
+    ><br />
+    {% endfor %}
+  </div>
+  {% endif %}
+  <form
+    style="
+      width: 450px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+        0px 2px 4px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      background: white;
+    "
+    method="post"
+    class="p-4"
+    novalidate
+  >
+    <h1 class="text-center text-primary mb-4">Login Page</h1>
+    <!-- {{form | crispy }} -->
+    {% csrf_token %} {% for fm in form.visible_fields %}
+    <div class="mb-3">
+      {{fm.label_tag}} {{fm}}
+      <div class="text-danger">{{fm.errors|striptags}}</div>
     </div>
-    
-
+    {% endfor %}
+    <br />
+    <div class="text-center">
+      <button class="btn btn-primary w-100" type="submit">Submit</button>
+    </div>
+    <br />
+    {% if type == 'Sign Up' %}
+    <small class="d-block text-center">
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-primary">Login</a></small
+    >
+    {% endif %}
+  </form>
+</div>
 {% endblock %}

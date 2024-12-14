@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,49 +12,193 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- Bootstrap Icons CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <!-- Option 1: Include in HTML -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
   </head>
-  <body style="background: rgba(0, 128, 0, 0.1)">
-    <nav class="navbar navbar-light bg-primary py-3">
+  <body
+    style="background: rgba(0, 128, 0, 0.1); font-family: 'Arial', sans-serif"
+  >
+    <nav
+      class="navbar navbar-expand-lg fixed-top navbar-dark py-3 shadow-lg mb-5 futuristic-nav"
+    >
       <div class="container-fluid">
-        <div><a class="navbar-brand text-white h3"><i>Public Library</i></a>
-        <a href="{% url 'home' %}" class=" btn text-white mx-2" type="submit"
-            >Home</a
-          ></div>
-        <div class="d-flex">
-          
-          {% if user.is_authenticated %}
-          <p style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2),
-                -3px -3px 7px rgba(0, 0, 0, 0.1),
-                3px 3px 7px rgba(0, 0, 0, 0.1);font-weight:bold" href="" class="d-inline-block text-primary m-0 p-2 rounded-pill bg-body" 
-            >Balance: ${{user.wallet.balance}} </p
-          >
-          <a href="{% url 'deposit' %}" class="btn  text-white mx-2" type="submit"
-            >Deposit</a
-          >
-          <a href="{% url 'profile' %}" class="btn  text-white mx-2" type="submit"
-            >Profile</a
-          >
-          <form action="{% url 'logout' %}" method="post" class="d-inline-block">
-          {% csrf_token %}
-          <button class="btn btn-outline text-white mx-2" type="submit"
-            >Logout</button>
-          </form>
-          {% else %}
-          <a href="{% url 'signup' %}" class="btn mx-4 text-white">Sign Up</a>
-          <a href="{% url 'login' %}" class="btn  text-white" type="submit"
-            >Login</a
-          >
-          {% endif %}
-          
-          
+        <a
+          class="navbar-brand text-white h3 fw-bold me-4"
+          href="{% url 'home' %}"
+        >
+          <span class="futuristic-text">Public Library</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="{% url 'home' %}" class="nav-link active futuristic-link"
+                >Home</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            {% if user.is_authenticated %}
+            <div class="balance-chip me-3">
+              <span class="balance-label">Balance:</span>
+              <span class="balance-amount">${{user.wallet.balance}}</span>
+            </div>
+            <a
+              href="{% url 'collection' %}"
+              class="nav-link active futuristic-link text-white"
+              >Books</a
+            >
+            <a
+              href="{% url 'deposit' %}"
+              class="nav-link active futuristic-link text-white"
+              >Deposit</a
+            >
+            <a
+              href="{% url 'profile' %}"
+              class="nav-link active futuristic-link text-white"
+              >Profile</a
+            >
+            <form
+              action="{% url 'logout' %}"
+              method="post"
+              class="d-inline-block"
+            >
+              {% csrf_token %}
+              <button
+                class="btn btn-outline-light futuristic-btn"
+                type="submit"
+              >
+                Logout
+              </button>
+            </form>
+            {% else %}
+            <a
+              href="{% url 'signup' %}"
+              class="btn btn-outline-light futuristic-btn me-2 text-white"
+              >Sign Up</a
+            >
+            <a
+              href="{% url 'login' %}"
+              class="btn btn-outline-light futuristic-btn text-white"
+              >Login</a
+            >
+            {% endif %}
+          </div>
         </div>
       </div>
     </nav>
-    {% block content %} {% endblock %}
+    <div class="container flex justify-content-center align-items-center">
+      <div class="py-5">{% block content %} {% endblock %}</div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+      <div class="container">
+        <div class="row">
+          <!-- Library Info -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="text-uppercase fw-bold mb-3">
+              Mymensingh Public Library
+            </h5>
+            <p class="lead mb-0">123 Library Street, Mymensingh, Bangladesh</p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="text-uppercase fw-bold mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="#"
+                  class="text-white-50 text-decoration-none footer-hover-link"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white-50 text-decoration-none footer-hover-link"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white-50 text-decoration-none footer-hover-link"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white-50 text-decoration-none footer-hover-link"
+                  >FAQs</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-md-4">
+            <h5 class="text-uppercase fw-bold mb-3">Connect With Us</h5>
+            <div class="d-flex">
+              <a href="#" class="text-white footer-social-icon me-3"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="#" class="text-white footer-social-icon me-3"
+                ><i class="bi bi-twitter"></i
+              ></a>
+              <a href="#" class="text-white footer-social-icon me-3"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a href="#" class="text-white footer-social-icon"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="text-center">
+          <p class="small mb-0">
+            &copy; 2023 Mymensingh Public Library. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+      });
+    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, DetailView, UpdateView
+from django.views.generic import View, DetailView, UpdateView, ListView
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import BorrowBook, Books
@@ -10,6 +10,33 @@ from .forms import ReviewForm
 from django.urls import reverse
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
+from books.models import BookCategory, Books
+
+
+# All books
+class CollectionView(ListView):
+    model = Books
+    template_name = "collection.html"
+    context_object_name = "books"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        cat_slug = self.kwargs.get("cat_slug")
+        if cat_slug:
+            category = get_object_or_404(BookCategory, slug=cat_slug)
+            queryset = queryset.filter(category=category)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = BookCategory.objects.all()
+
+        cat_slug = self.kwargs.get("cat_slug")
+        if cat_slug:
+            context["filter"] = BookCategory.objects.get(slug=cat_slug).category_name
+        context["user"] = self.request.user
+        return context
 
 
 # Create your views here.
@@ -50,7 +77,7 @@ class BorrowBookView(LoginRequiredMixin, View):
 class BookDetailsView(LoginRequiredMixin, DetailView):
     model = Books
     pk_url_kwarg = "id"
-    template_name = "books.html"
+    template_name = "book.html"
     context_object_name = "book"
 
     def post(self, request, *args, **kwargs):

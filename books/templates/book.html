@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="card my-5 container shadow-lg rounded-4">
+  <div class="row g-0">
+    <div
+      class="col-md-4 d-flex align-items-center justify-content-center bg-light rounded-start"
+    >
+      <img
+        src="{{ book.image.url }}"
+        class="img-fluid rounded p-3"
+        alt="Book Image"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body p-4">
+        <h2 class="card-title text-primary fw-bold">{{ book.title }}</h2>
+        <p class="card-text text-muted mb-4">{{ book.description }}</p>
+        <h5 class="text-success fw-semibold">
+          Borrowing Price: ${{ book.borrowing_price }}
+        </h5>
+        <p class="card-text"><strong>Quantity:</strong> {{ car.quantity }}</p>
+        <div class="mb-3">
+          <strong>Category:</strong>
+          {% for cat in book.category.all %}
+          <span class="badge bg-secondary me-2">{{ cat.category_name }}</span>
+          {% endfor %}
+        </div>
+        {% if user.is_authenticated %}
+        <form
+          action="{% url 'borrow_book' book.id %}"
+          class="d-inline-block"
+          method="post"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-dark btn-lg">
+            Borrow Now
+          </button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="card shadow-sm rounded-3">
+    <div class="card-header bg-primary text-white">
+      <h4>Total Reviews: {{ reviews | length }}</h4>
+    </div>
+    <div class="card-body">
+      {% for review in reviews %}
+      <div class="mb-4 border-bottom pb-3">
+        <h6 class="fw-bold mb-1">
+          {{ review.name }}
+          <span class="text-muted small">- {{ review.createdAt }}</span>
+        </h6>
+        <p class="fst-italic">{{ review.body }}</p>
+      </div>
+      {% endfor %} {% if reviews|length == 0 %}
+      <p class="text-center text-muted">
+        No reviews yet. Be the first to leave a review!
+      </p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if review_form %}
+  <div class="card my-4 shadow-sm rounded-3">
+    <div class="card-body">
+      <h5 class="mb-3">Add a Review</h5>
+      <form method="post">
+        {% csrf_token %} {{ review_form | crispy }}
+        <button class="btn btn-warning mt-3">Submit</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock content %}

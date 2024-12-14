@@ -1,0 +1,304 @@
+body {
+  padding-top: 80px;
+  background-color: #f8f9fa;
+}
+.hero {
+  background: url("https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat center center;
+  background-size: cover;
+  height: 60vh;
+  position: relative;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-icon {
+  font-size: 3rem;
+  color: #007bff;
+}
+.card {
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+service-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 188, 212, 0.3);
+}
+.icon-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+.service-card:hover .icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 188, 212, 0.5),
+    rgba(76, 175, 80, 0.5)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.service-card:hover .hover-overlay {
+  opacity: 1;
+}
+.feature-icon {
+  font-size: 2.5rem;
+  color: #00bcd4;
+}
+@media (max-width: 767.98px) {
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  .feature-icon {
+    font-size: 2rem;
+  }
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  .card-footer {
+    padding-bottom: 1.5rem !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .row {
+    justify-content: center;
+  }
+}
+
+.futuristic-nav {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.futuristic-text {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #00ffff, #00ff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* animation: glow 2s ease-in-out infinite alternate; */
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+  }
+  to {
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+}
+
+.futuristic-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.futuristic-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00ffff;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.futuristic-link:hover::after {
+  transform: scaleX(1);
+}
+
+.futuristic-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.futuristic-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.balance-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.balance-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 5px;
+}
+
+.balance-amount {
+  font-weight: bold;
+  color: #00ffff;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    margin-bottom: 1rem;
+  }
+  .d-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .balance-chip,
+  .futuristic-btn {
+    margin-bottom: 0.5rem;
+  }
+}
+.futuristic-container {
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  min-height: 100vh;
+}
+
+.futuristic-sidebar,
+.futuristic-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.futuristic-radio .form-check-input {
+  background-color: transparent;
+  border-color: #3498db;
+}
+
+.futuristic-radio .form-check-input:checked {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.futuristic-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.futuristic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+}
+
+.futuristic-card-img {
+  transition: transform 0.3s ease;
+  height: 200px;
+  object-fit: cover;
+}
+
+.futuristic-card:hover .futuristic-card-img {
+  transform: scale(1.05);
+}
+
+.futuristic-badge {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: #fff;
+  font-weight: bold;
+}
+
+.futuristic-btn {
+  background: rgba(52, 152, 219, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+.futuristic-btn:hover {
+  background: rgba(52, 152, 219, 0.2);
+  color: #2980b9;
+}
+
+.futuristic-offcanvas {
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+}
+
+.text-primary {
+  color: #3498db !important;
+}
+
+.text-light {
+  color: #333 !important;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+.futuristic-card {
+  animation: pulse 2s infinite;
+}
+
+.hover-row:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.footer-hover-link {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+.footer-hover-link:hover {
+  color: #ff9f00; /* Or any color you prefer */
+  opacity: 1;
+}
+
+/* Social Media Icons Styling */
+.footer-social-icon {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.footer-social-icon:hover {
+  transform: scale(1.1);
+  color: #ff9f00; /* You can change this color */
+}

@@ -1,46 +1,178 @@
-{% extends "base.html" %} {% block content %}
-{% load static %}
-<div class="d-flex flex-wrap p-4">
-  <div class="col-2 bg-white p-3" >
-    <h5>All Categories</h5>
-    {% for cat in category %}
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="category"
-        id="{{cat.id}}"
-      />
-      <label class="form-check-label" for="{{cat.id}}">
-        
-        <a href="{% url 'category_wise_post' cat.slug %}" class="text-decoration-none text-dark" >{{cat.category_name}}</a>
-      </label>
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!-- Hero Section -->
+<section class="hero mb-5 position-relative py-3">
+  <div
+    class="hero-overlay position-absolute top-0 start-0 w-100 h-100"
+    style="background: rgba(0, 0, 0, 0.6)"
+  ></div>
+  <div
+    class="text-center text-white d-flex align-items-center justify-content-center h-100"
+  >
+    <div class="text-center" data-aos="fade-up">
+      <h1
+        class="display-4 fw-bold mb-4"
+        style="
+          font-family: 'Times New Roman', serif;
+          text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        "
+      >
+        Welcome to Mymensingh Public Library
+      </h1>
+      <p class="lead mb-4">Discover the joy of reading in our historic halls</p>
+      <a
+        href="{% url 'collection' %}"
+        class="btn btn-primary btn-lg shadow-sm px-4 py-2"
+        >Explore Our Collection</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="container mb-5 py-5" data-aos="fade-up">
+  <h2
+    class="text-center mb-5"
+    style="
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      color: #00bcd4;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    "
+  >
+    Our Cutting-Edge Services
+  </h2>
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+      <div
+        class="card h-100 bg-dark text-white border-0 rounded-lg overflow-hidden position-relative service-card"
+      >
+        <div class="card-body text-center p-4 p-sm-5">
+          <div class="icon-wrapper mb-4">
+            <i class="bi bi-book feature-icon"></i>
+          </div>
+          <h5 class="card-title text-uppercase mb-3" style="font-weight: 600">
+            Quantum Collection
+          </h5>
+          <p class="card-text">
+            Access millions of books and documents through our advanced quantum
+            storage system.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center pb-4">
+          <a
+            href="#"
+            class="btn btn-outline-info rounded-pill px-4 py-2 text-uppercase"
+            >Explore</a
+          >
+        </div>
+        <div class="hover-overlay"></div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+      <div
+        class="card h-100 bg-dark text-white border-0 rounded-lg overflow-hidden position-relative service-card"
+      >
+        <div class="card-body text-center p-4 p-sm-5">
+          <div class="icon-wrapper mb-4">
+            <i class="bi bi-display feature-icon"></i>
+          </div>
+          <h5 class="card-title text-uppercase mb-3" style="font-weight: 600">
+            Virtual Reality Hub
+          </h5>
+          <p class="card-text">
+            Immerse yourself in our VR libraries and interactive educational
+            simulations.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center pb-4">
+          <a
+            href="#"
+            class="btn btn-outline-success rounded-pill px-4 py-2 text-uppercase"
+            >Experience</a
+          >
+        </div>
+        <div class="hover-overlay"></div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+      <div
+        class="card h-100 bg-dark text-white border-0 rounded-lg overflow-hidden position-relative service-card"
+      >
+        <div class="card-body text-center p-4 p-sm-5">
+          <div class="icon-wrapper mb-4">
+            <i class="bi bi-cpu feature-icon"></i>
+          </div>
+          <h5 class="card-title text-uppercase mb-3" style="font-weight: 600">
+            AI Learning Pods
+          </h5>
+          <p class="card-text">
+            Engage with our AI-powered study groups and personalized learning
+            programs.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center pb-4">
+          <a
+            href="#"
+            class="btn btn-outline-danger rounded-pill px-4 py-2 text-uppercase"
+            >Connect</a
+          >
+        </div>
+        <div class="hover-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+<!-- Latest Books Section -->
+<section class="container mb-5">
+  <h2
+    class="text-center section-title"
+    style="font-family: 'Roboto', sans-serif; font-weight: 700"
+  >
+    Latest Additions
+  </h2>
+  <div class="row g-4" data-aos="zoom-in" data-aos-delay="300">
+    {% for book in latest_books %}
+    <div class="col-md-3">
+      <div class="card h-100 shadow-sm hover-effect">
+        <img
+          src="{{ book.cover_image.url }}"
+          class="card-img-top"
+          alt="{{ book.title }}"
+          style="border-radius: 4px 4px 0 0"
+        />
+        <div class="card-body">
+          <h5 class="card-title" style="font-family: 'Roboto', sans-serif">
+            {{ book.title }}
+          </h5>
+          <p class="card-text">{{ book.author }}</p>
+          <a href="#" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
     </div>
     {% endfor %}
   </div>
-  <div class="col-10 p-3">
-    <h4>{{books | length}} results found</h4>
-    <div class="d-flex flex-wrap pt-5">
-      {% for b in books %}
-      <div class="col-sm-3">
-        <div class="card m-2">
-          <div class="card-body">
-            <img src="{{b.image.url}}" class="card-img-top" alt="...">
-            <h5 class="card-title"><a href="{% url 'book_details' b.id %}" class="text-decoration-none text-dark">{{b.title}}</a></h5>
-            <p class="card-text">{{b.description |truncatewords:10}}</p>
-           
-            <p>
-              Category : {% for cat in b.category.all %}
-              <button class="btn btn-primary btn-sm m-2" disabled>
-                {{cat.category_name}}
-              </button>
-              {% endfor %}
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+</section>
+{% endcomment %}
+
+<!-- Call to Action -->
+<section class="bg-light py-5 mb-5">
+  <div class="container text-center" data-aos="fade-up" data-aos-delay="400">
+    <h2 class="mb-4 text-dark">Ready to start your literary journey?</h2>
+    <p class="lead mb-4 text-muted">
+      Join our library today and unlock centuries of knowledge!
+    </p>
+    <a
+      href="{% url 'signup' %}"
+      class="btn btn-primary btn-lg shadow-sm px-4 py-2"
+      >Become a Member</a
+    >
   </div>
-</div>
+</section>
+
+<!-- AOS Library for animations -->
 
 {% endblock content %}

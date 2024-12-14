@@ -1,0 +1,116 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!-- Offcanvas for mobile and tablet -->
+<div
+  class="offcanvas offcanvas-start futuristic-offcanvas"
+  tabindex="-1"
+  id="categoryOffcanvas"
+  aria-labelledby="categoryOffcanvasLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="categoryOffcanvasLabel">All Categories</h5>
+    <button
+      type="button"
+      class="btn-close text-light"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    {% for cat in category %}
+    <div class="form-check mb-3 futuristic-radio">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="category"
+        id="mobile-{{ cat.id }}"
+      />
+      <label class="form-check-label" for="mobile-{{ cat.id }}">
+        <a
+          href="{% url 'category_wise_post' cat.slug %}"
+          class="text-decoration-none text-light"
+        >
+          {{ cat.category_name }}
+        </a>
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="futuristic-container p-4">
+  <div class="row">
+    <div class="col-md-3 d-none d-md-block">
+      <div class="futuristic-sidebar p-4 rounded-4" data-aos="fade-up">
+        <h5 class="fw-bold text-primary mb-4">All Categories</h5>
+        {% for cat in category %}
+        <div class="form-check mb-3 futuristic-radio">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="category"
+            id="{{ cat.id }}"
+          />
+          <label class="form-check-label" for="{{ cat.id }}">
+            <a
+              href="{% url 'category_wise_post' cat.slug %}"
+              class="text-decoration-none text-light"
+            >
+              {{ cat.category_name }}
+            </a>
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="futuristic-content p-4 rounded-4">
+        <h4 class="text-primary mb-4">{{ books|length }} results found</h4>
+        <div class="row g-4">
+          {% for b in books %}
+          <div class="col-sm-6 col-lg-4" data-aos="fade-up">
+            <div class="card futuristic-card h-100">
+              <img
+                src="{{ b.image.url }}"
+                class="card-img-top futuristic-card-img"
+                alt="Book Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title mb-2">
+                  <a
+                    href="{% url 'book_details' b.id %}"
+                    class="text-decoration-none text-primary fw-bold"
+                  >
+                    {{ b.title }}
+                  </a>
+                </h5>
+                <p class="card-text text-light small">
+                  {{ b.description|truncatewords:10 }}
+                </p>
+                <div class="mt-2">
+                  {% for cat in b.category.all %}
+                  <span class="badge futuristic-badge me-1"
+                    >{{ cat.category_name }}</span
+                  >
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  class="btn futuristic-btn d-md-none position-fixed top-50 start-0 translate-middle-y"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#categoryOffcanvas"
+  aria-controls="categoryOffcanvas"
+  style="z-index: 1050"
+>
+  <i class="bi bi-chevron-right"></i>
+</button>
+{% endblock content %}
