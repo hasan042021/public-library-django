@@ -1,5 +1,7 @@
 # Public Library
 
+**Live Demo**: [Click here to view the live demo](https://hasan042021.github.io/public_library_static/)
+
 ## Overview
 
 Public Library is a platform that allows users to manage their reading activities and wallet. Users can borrow books, deposit money into their wallets, and get refunds upon returning books. The platform also includes a review system where only users who have borrowed a book can leave comments.
@@ -39,38 +41,3 @@ Public Library is a platform that allows users to manage their reading activitie
 
 - **View Borrowing History**: Users can see a list of all the books they have borrowed, along with their status (whether returned or not).
 - **Due Dates**: Users can view the due date for each borrowed book.
-
-## How it Works
-
-1. **User Registration and Authentication**:
-
-   - Users can create an account by entering their details.
-   - Once registered, users can log in using their credentials to access the platform.
-
-2. **Depositing Money to Wallet**:
-
-   - Users can deposit money into their account using a payment method.
-   - The deposited money will be reflected in their wallet balance.
-
-3. **Browsing and Borrowing Books**:
-
-   - The platform displays a list of available books, along with their categories.
-   - Users can browse through the collection and borrow a book.
-   - Borrowing a book will deduct a specified amount from the user’s wallet.
-
-4. **Returning Books**:
-
-   - Users can return the borrowed books after reading.
-   - When the book is returned, the money will be refunded into the user's wallet.
-
-5. **Reviewing Books**:
-
-   - Each book has a comment section for reviews.
-   - Only users who have borrowed the book can leave reviews.
-
-6. **Book Filtering**:
-
-   - Books are categorized, and users can filter books by category to find what interests them.
-
-7. **Tracking User Activities**:
-   - Users can view their entire borrowing history, including the status of borrowed books (whether returned or not), along with the due dates.
