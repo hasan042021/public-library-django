@@ -2,22 +2,33 @@
 
 <!-- User Profile Section -->
 <div
-  style="max-width: 540px"
+  style="
+    max-width: 540px;
+    border-radius: 10px !important ;
+    font-family: 'Fira Sans', 'sans-serif';
+  "
   class="bg-white rounded-lg shadow-lg overflow-hidden max-w-2xl mx-auto"
 >
   <div class="d-flex align-items-center p-4">
     <!-- Profile Initials Circle -->
     <div
-      class="d-flex align-items-center justify-content-center rounded-circle bg-light"
+      class="d-flex align-items-center justify-content-center rounded-circle"
       style="
         width: 96px;
         height: 96px;
         font-size: 1.875rem;
         font-weight: 600;
-        color: #4a5568;
+        color: rgb(77, 94, 124);
+        background: rgb(199, 199, 207);
+        background: linear-gradient(
+          90deg,
+          rgba(199, 199, 207, 1) 0%,
+          rgba(186, 186, 223, 1) 84%,
+          rgb(165, 184, 188) 100%
+        );
       "
     >
-      {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+      {{ user.first_name|upper|slice:":1" }}{{ user.last_name|upper|slice:":1"}}
     </div>
 
     <!-- User Information -->
@@ -45,7 +56,10 @@
 </div>
 
 <!-- Borrowing History Section -->
-<div class="mt-5 bg-white shadow rounded overflow-hidden">
+<div
+  style="border-radius: 10px !important; font-family: 'Fira Sans', 'sans-serif'"
+  class="mt-5 bg-white shadow overflow-hidden"
+>
   <div class="table-responsive">
     <table class="table table-bordered align-middle">
       <thead class="bg-gradient-primary text-light">
